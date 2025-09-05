@@ -8,8 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const cursorFollower = document.querySelector('.cursor-follower');
     const particlesContainer = document.getElementById('particles');
     const bnodeBtn = document.querySelector('.bnode-btn');
+    const contactBtn = document.querySelector('.contact-btn');
     const profileCards = document.querySelectorAll('.profile-card');
     const spotifyProfileBtn = document.querySelector('.spotify-profile-btn');
+    const contactForm = document.getElementById('contact-form');
+    const successModal = document.getElementById('success-modal');
+    const acceptBtn = document.getElementById('accept-btn');
     
     // Configuración inicial del volumen
     bgVideo.volume = 0.5;
@@ -47,6 +51,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Efecto ripple para el botón de bnode
     bnodeBtn.addEventListener('click', function(e) {
+        createRipple(this, e);
+    });
+    
+    // Efecto ripple para el botón de contacto
+    contactBtn.addEventListener('click', function(e) {
+        // Smooth scroll a la sección de contacto
+        e.preventDefault();
+        document.querySelector('#contacto').scrollIntoView({
+            behavior: 'smooth'
+        });
         createRipple(this, e);
     });
     
@@ -149,7 +163,16 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         bgVideo.style.opacity = 1;
     }, 100);
-
+    
+    // Ocultar preloader cuando la página está completamente cargada
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }, 1000);
+    });
     
     // Observador de intersección para animaciones al hacer scroll
     const observerOptions = {
@@ -168,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observar elementos para animaciones
-    const animatedElements = document.querySelectorAll('.profile-card, .spotify-widget');
+    const animatedElements = document.querySelectorAll('.profile-card, .spotify-widget, .contact-container');
     animatedElements.forEach(el => {
         el.style.opacity = 0;
         el.style.transform = 'translateY(20px)';
@@ -191,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Efecto de blur/opacity del fondo al interactuar con botones
-    const buttons = document.querySelectorAll('button, .social-btn, .profile-card, .bnode-btn, .spotify-profile-btn');
+    const buttons = document.querySelectorAll('button, .social-btn, .profile-card, .bnode-btn, .contact-btn, .spotify-profile-btn');
     
     buttons.forEach(button => {
         button.addEventListener('mouseenter', () => {
@@ -203,6 +226,49 @@ document.addEventListener('DOMContentLoaded', function() {
             bgVideo.style.filter = 'blur(0)';
             bgVideo.style.opacity = '1';
         });
+    });
+    
+    // Manejo del formulario de contacto
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Recopilar datos del formulario
+        const formData = new FormData(contactForm);
+        
+        // Enviar datos a FormBackend usando fetch
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Mostrar modal de éxito
+                successModal.classList.add('active');
+                // Resetear formulario
+                contactForm.reset();
+            } else {
+                throw new Error('Error al enviar el formulario');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.');
+        });
+    });
+    
+    // Cerrar modal de éxito
+    acceptBtn.addEventListener('click', function() {
+        successModal.classList.remove('active');
+    });
+    
+    // Cerrar modal al hacer clic fuera del contenido
+    successModal.addEventListener('click', function(e) {
+        if (e.target === successModal) {
+            successModal.classList.remove('active');
+        }
     });
     
     // Animación de glitch para el nombre
