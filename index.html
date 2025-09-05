@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FabriDeveloper</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Cursor personalizado -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Video de fondo -->
+    <div class="video-background">
+        <video autoplay muted loop id="bg-video">
+            <source src="fondo.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <div class="particles" id="particles"></div>
+        <div class="gradient-overlay"></div>
+    </div>
+
+    <!-- Control de volumen -->
+    <div class="volume-control">
+        <button id="mute-btn" class="volume-btn">
+            <i class="fas fa-volume-up"></i>
+        </button>
+        <div class="volume-container">
+            <input type="range" id="volume-slider" min="0" max="100" value="50">
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <!-- Avatar animado -->
+        <div class="avatar-container">
+            <div class="avatar-decoration">
+                <img src="foto-perfil.gif" alt="Mi Avatar" class="avatar">
+                <div class="avatar-tooltip">FabriDeveloper</div>
+            </div>
+        </div>
+
+        <!-- Nombre con efecto glitch -->
+        <h1 class="name animate-fade-in glitch-text">FΔBRI</h1>
+
+        <!-- Descripciones -->
+        <div class="bios">
+            <p class="bio animate-fade-in" style="animation-delay: 0.2s;">
+                <strong>Sobre mí:</strong> Soy Fabri, diseñador y desarrollador web, apasionado por crear experiencias elegantes y funcionales.
+            </p>
+            <p class="bio animate-fade-in" style="animation-delay: 0.4s;">
+                <strong>A lo que me dedico:</strong> Desarrollo sitios y apps con <strong>HTML, CSS, JavaScript y Python</strong>, combinando diseño moderno y eficiencia.
+            </p>
+        </div>
+
+
+        <!-- Botón de bnode -->
+        <a href="https://bnode.netlify.app" class="bnode-btn" target="_blank">
+            <i class="fa-solid fa-terminal"></i> bnode - diseño
+        </a>
+
+        <!-- Botones de redes sociales -->
+        <div class="social-buttons">
+            <a href="https://www.youtube.com/@Fabridvp" class="social-btn" target="_blank" data-tooltip="YouTube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://github.com/FabriDevelope" class="social-btn" target="_blank" data-tooltip="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://instagram.com/@Fabrrooo" class="social-btn" target="_blank" data-tooltip="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://open.spotify.com/user/31e2nwjr2vztblo6v2whvkn3ls3e" class="social-btn" target="_blank" data-tooltip="Spotify">
+                <i class="fab fa-spotify"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Sección de Discord/Steam -->
+    <section class="discord-steam-section">
+        <h2 class="section-title">Mis Perfiles</h2>
+        <div class="profiles-container">
+            <a href="https://discord.com/users/1189364021271478437" class="profile-card" target="_blank">
+                <div class="profile-icon">
+                    <i class="fab fa-discord"></i>
+                </div>
+                <h3>Discord</h3>
+                <p>Mira mi perfil de Discord Nitro</p>
+            </a>
+            <a href="https://steamcommunity.com/id/FabriDev" class="profile-card" target="_blank">
+                <div class="profile-icon">
+                    <i class="fab fa-steam"></i>
+                </div>
+                <h3>Steam</h3>
+                <p>Mira mi perfil de Steam</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Sección de Spotify -->
+    <section class="spotify-section">
+        <h2 class="section-title">Mi Playlist</h2>
+        <div class="spotify-container">
+            <div class="spotify-widget">
+                <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4DqFneq1NijEDaGvxbyYQk?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+            <div class="spotify-profile">
+                <a href="https://open.spotify.com/user/31e2nwjr2vztblo6v2whvkn3ls3e" class="spotify-profile-btn" target="_blank">
+                    <i class="fab fa-spotify"></i> Mi perfil de Spotify
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
