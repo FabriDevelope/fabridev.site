@@ -115,6 +115,49 @@
         </div>
     </section>
 
+     <!-- Sección de Contacto -->
+    <section id="contacto" class="contact-section">
+        <h2 class="section-title">Contacto</h2>
+        <div class="contact-container">
+            <form id="contact-form" method="POST" action="https://www.formbackend.com/f/08354160c064b279">
+                <div class="form-group">
+                    <label for="discord">Nombre de Usuario (Discord, opcional)</label>
+                    <input type="text" id="discord" name="discord" placeholder="Tu usuario de Discord">
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="tuemail@ejemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="asunto">Asunto</label>
+                    <input type="text" id="asunto" name="asunto" placeholder="Asunto del mensaje" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Modal de éxito -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Mensaje enviado con éxito</h3>
+            <p>Tu mensaje ha sido enviado correctamente. Te responderé lo antes posible.</p>
+            <button id="accept-btn" class="accept-btn">Aceptar</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>
