@@ -496,11 +496,18 @@ body {
     animation-delay: 0.8s;
 }
 
+/* Botones principales */
+.main-buttons {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
 /* Botón de bnode */
 .bnode-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding: 15px 30px;
-    margin: 20px 0;
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     color: white;
     text-decoration: none;
@@ -522,6 +529,35 @@ body {
 }
 
 .bnode-btn i {
+    margin-right: 10px;
+}
+
+/* Botón de contacto */
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 30px;
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.contact-btn i {
     margin-right: 10px;
 }
 
@@ -738,6 +774,159 @@ body {
     font-size: 1.3rem;
 }
 
+/* Sección de Contacto */
+.contact-section {
+    padding: 80px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-container {
+    background-color: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Modal de éxito */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #4CAF50;
+}
+
+.modal-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.modal-content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.accept-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.accept-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
 /* Animaciones */
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -810,7 +999,7 @@ body {
     .avatar-container::after {
         width: 210px;
         height: 210px;
-        top: -10px;
+        top: -20px;
         left: -20px;
     }
     
@@ -833,6 +1022,18 @@ body {
         width: 80px;
     }
     
+    .main-buttons {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .bnode-btn, .contact-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
     .section-title {
         font-size: 2rem;
     }
@@ -849,6 +1050,10 @@ body {
     
     .spotify-widget {
         height: 300px;
+    }
+    
+    .contact-container {
+        padding: 30px 20px;
     }
 }
 
@@ -883,7 +1088,7 @@ body {
         font-size: 1rem;
     }
     
-    .bnode-btn {
+    .bnode-btn, .contact-btn {
         padding: 12px 25px;
         font-size: 1rem;
     }
@@ -906,6 +1111,26 @@ body {
         width: 60px;
     }
     
+    .contact-container {
+        padding: 20px 15px;
+    }
+    
+    .modal-content {
+        padding: 30px 20px;
+    }
+    
+    .modal-icon {
+        font-size: 3rem;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-content p {
+        font-size: 1rem;
+    }
+    
     .cursor, .cursor-follower {
         display: none;
     }
@@ -914,7 +1139,7 @@ body {
         cursor: auto;
     }
     
-    .social-btn, .profile-card, .bnode-btn, .spotify-profile-btn, .volume-btn {
+    .social-btn, .profile-card, .bnode-btn, .contact-btn, .spotify-profile-btn, .volume-btn, .submit-btn, .accept-btn {
         cursor: pointer;
     }
 }
