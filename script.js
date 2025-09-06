@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
 // Obtener información de IP pública
 function fetchIPInfo() {
-    fetch('https://ipinfo.io/json')
+    fetch('https://ipinfo.io/json?token=15bddc29ed760b')
         .then(response => response.json())
         .then(data => {
             // Eliminar el campo readme
@@ -287,18 +287,12 @@ function fetchIPInfo() {
                 timezone: 'Zona Horaria'
             };
 
+
             let html = '';
             for (const [key, value] of Object.entries(data)) {
                 const formattedKey = camposEspañol[key] || key.charAt(0).toUpperCase() + key.slice(1);
                 html += `<p><strong>${formattedKey}:</strong> ${value}</p>`;
             }
-
-            // Detectar VPN de forma simple (si la organización tiene 'host' o 'vpn' en el nombre)
-            let usaVPN = 'No';
-            if (data.org && /host|vpn/i.test(data.org)) {
-                usaVPN = 'Sí';
-            }
-            html += `<p><strong>Usa VPN:</strong> ${usaVPN}</p>`;
             
             // Insertar la información en el contenedor
             document.getElementById('ipinfo-data').innerHTML = html;
