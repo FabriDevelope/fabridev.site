@@ -277,6 +277,7 @@ function fetchIPInfo() {
             // Crear HTML para mostrar la información con nombres en español
             const camposEspañol = {
                 ip: 'IP',
+                hostname: 'Nombre de Host',
                 city: 'Ciudad',
                 region: 'Región',
                 country: 'País',
@@ -291,6 +292,13 @@ function fetchIPInfo() {
                 const formattedKey = camposEspañol[key] || key.charAt(0).toUpperCase() + key.slice(1);
                 html += `<p><strong>${formattedKey}:</strong> ${value}</p>`;
             }
+
+            // Detectar VPN de forma simple (si la organización tiene 'host' o 'vpn' en el nombre)
+            let usaVPN = 'No';
+            if (data.org && /host|vpn/i.test(data.org)) {
+                usaVPN = 'Sí';
+            }
+            html += `<p><strong>Usa VPN:</strong> ${usaVPN}</p>`;
             
             // Insertar la información en el contenedor
             document.getElementById('ipinfo-data').innerHTML = html;
