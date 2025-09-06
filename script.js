@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const cursorFollower = document.querySelector('.cursor-follower');
     const particlesContainer = document.getElementById('particles');
     const bnodeBtn = document.querySelector('.bnode-btn');
-    const contactBtn = document.querySelector('.contact-btn');
     const profileCards = document.querySelectorAll('.profile-card');
     const spotifyProfileBtn = document.querySelector('.spotify-profile-btn');
-    const contactForm = document.getElementById('contact-form');
+    const submitBtn = document.querySelector('.submit-btn');
+    const contactForm = document.querySelector('.contact-form');
     const successModal = document.getElementById('success-modal');
     const acceptBtn = document.getElementById('accept-btn');
     
@@ -54,16 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
         createRipple(this, e);
     });
     
-    // Efecto ripple para el botón de contacto
-    contactBtn.addEventListener('click', function(e) {
-        // Smooth scroll a la sección de contacto
-        e.preventDefault();
-        document.querySelector('#contacto').scrollIntoView({
-            behavior: 'smooth'
-        });
-        createRipple(this, e);
-    });
-    
     // Efecto ripple para las tarjetas de perfil
     profileCards.forEach(card => {
         card.addEventListener('click', function(e) {
@@ -75,6 +65,13 @@ document.addEventListener('DOMContentLoaded', function() {
     spotifyProfileBtn.addEventListener('click', function(e) {
         createRipple(this, e);
     });
+    
+    // Efecto ripple para el botón de envío del formulario
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function(e) {
+            createRipple(this, e);
+        });
+    }
     
     // Efecto ripple para todos los botones
     document.querySelectorAll('button').forEach(button => {
@@ -115,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Efecto hover en elementos interactivos para el cursor
-    const interactiveElements = document.querySelectorAll('a, button, .profile-card');
+    const interactiveElements = document.querySelectorAll('a, button, .profile-card, input, textarea');
     
     interactiveElements.forEach(element => {
         element.addEventListener('mouseenter', () => {
@@ -163,16 +160,40 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         bgVideo.style.opacity = 1;
     }, 100);
-    
-    // Ocultar preloader cuando la página está completamente cargada
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            preloader.style.opacity = '0';
+
+    // Interceptar el envío del formulario
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simular envío exitoso (aquí iría tu lógica real de envío)
+            // Por ahora, solo mostramos el modal después de un breve retraso
             setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 500);
-        }, 1000);
-    });
+                // Limpiar el formulario
+                contactForm.reset();
+                
+                // Mostrar el modal de éxito
+                successModal.classList.add('show');
+            }, 1000);
+        });
+    }
+
+    // Cerrar el modal al hacer clic en el botón de aceptar
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function() {
+            successModal.classList.remove('show');
+            createRipple(this, event);
+        });
+    }
+
+    // Cerrar el modal al hacer clic fuera del contenido
+    if (successModal) {
+        successModal.addEventListener('click', function(e) {
+            if (e.target === successModal) {
+                successModal.classList.remove('show');
+            }
+        });
+    }
     
     // Observador de intersección para animaciones al hacer scroll
     const observerOptions = {
@@ -191,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observar elementos para animaciones
-    const animatedElements = document.querySelectorAll('.profile-card, .spotify-widget, .contact-container');
+    const animatedElements = document.querySelectorAll('.profile-card, .spotify-widget, .contact-container, .info-card');
     animatedElements.forEach(el => {
         el.style.opacity = 0;
         el.style.transform = 'translateY(20px)';
@@ -214,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Efecto de blur/opacity del fondo al interactuar con botones
-    const buttons = document.querySelectorAll('button, .social-btn, .profile-card, .bnode-btn, .contact-btn, .spotify-profile-btn');
+    const buttons = document.querySelectorAll('button, .social-btn, .profile-card, .bnode-btn, .spotify-profile-btn, .submit-btn');
     
     buttons.forEach(button => {
         button.addEventListener('mouseenter', () => {
@@ -228,52 +249,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Manejo del formulario de contacto
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Recopilar datos del formulario
-        const formData = new FormData(contactForm);
-        
-        // Enviar datos a FormBackend usando fetch
-        fetch(contactForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                // Mostrar modal de éxito
-                successModal.classList.add('active');
-                // Resetear formulario
-                contactForm.reset();
-            } else {
-                throw new Error('Error al enviar el formulario');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.');
-        });
-    });
-    
-    // Cerrar modal de éxito
-    acceptBtn.addEventListener('click', function() {
-        successModal.classList.remove('active');
-    });
-    
-    // Cerrar modal al hacer clic fuera del contenido
-    successModal.addEventListener('click', function(e) {
-        if (e.target === successModal) {
-            successModal.classList.remove('active');
-        }
-    });
-    
     // Animación de glitch para el nombre
     const glitchText = document.querySelector('.glitch-text');
-    glitchText.setAttribute('data-text', glitchText.textContent);
+    if (glitchText) {
+        glitchText.setAttribute('data-text', glitchText.textContent);
+    }
     
     // Efecto de parallax suave al hacer scroll
     window.addEventListener('scroll', () => {
@@ -285,4 +265,43 @@ document.addEventListener('DOMContentLoaded', function() {
             parallax.style.transform = `translateY(${speed}px)`;
         }
     });
+    
+// Obtener información de IP pública
+function fetchIPInfo() {
+    fetch('https://ipinfo.io/json')
+        .then(response => response.json())
+        .then(data => {
+            // Eliminar el campo readme
+            delete data.readme;
+            
+            // Crear HTML para mostrar la información con nombres en español
+            const camposEspañol = {
+                ip: 'IP',
+                city: 'Ciudad',
+                region: 'Región',
+                country: 'País',
+                loc: 'Ubicación',
+                org: 'Organización',
+                postal: 'Código Postal',
+                timezone: 'Zona Horaria'
+            };
+
+            let html = '';
+            for (const [key, value] of Object.entries(data)) {
+                const formattedKey = camposEspañol[key] || key.charAt(0).toUpperCase() + key.slice(1);
+                html += `<p><strong>${formattedKey}:</strong> ${value}</p>`;
+            }
+            
+            // Insertar la información en el contenedor
+            document.getElementById('ipinfo-data').innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Error al obtener la información de IP:', error);
+            document.getElementById('ipinfo-data').innerHTML = '<p>Error al cargar la información.</p>';
+        });
+}
+
+// Llamar a la función para obtener la información de IP
+fetchIPInfo();
+
 });

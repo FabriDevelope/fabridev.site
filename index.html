@@ -57,6 +57,7 @@
         </div>
 
 
+
         <!-- Botón de bnode -->
         <a href="https://bnode.netlify.app" class="bnode-btn" target="_blank">
             <i class="fa-solid fa-terminal"></i> bnode - diseño
@@ -78,6 +79,22 @@
             </a>
         </div>
     </div>
+
+            <!-- Sección de Información Pública -->
+        <section class="public-info-section">
+            <h2 class="section-title">Tu Información Pública</h2>
+            <div class="public-info-container">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Información de IP</h3>
+                    <div id="ipinfo-data" class="info-data">
+                        <p>Cargando información...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     <!-- Sección de Discord/Steam -->
     <section class="discord-steam-section">
@@ -115,32 +132,34 @@
         </div>
     </section>
 
-     <!-- Sección de Contacto -->
-    <section id="contacto" class="contact-section">
+    <!-- Sección de Contacto -->
+    <section class="contact-section">
         <h2 class="section-title">Contacto</h2>
         <div class="contact-container">
-            <form id="contact-form" method="POST" action="https://www.formbackend.com/f/08354160c064b279">
+            <form method="POST" action="https://www.formbackend.com/f/08354160c064b279" class="contact-form">
                 <div class="form-group">
-                    <label for="discord">Nombre de Usuario (Discord, opcional)</label>
-                    <input type="text" id="discord" name="discord" placeholder="Tu usuario de Discord">
+                    <label for="dc-user">Discord Nickname</label>
+                    <input type="text" id="dc-user" name="dc-user" required>
                 </div>
                 <div class="form-group">
-                    <label for="nombre">Nombre Completo</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="tuemail@ejemplo.com" required>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
                 </div>
                 <div class="form-group">
                     <label for="asunto">Asunto</label>
-                    <input type="text" id="asunto" name="asunto" placeholder="Asunto del mensaje" required>
+                    <input type="text" id="asunto" name="asunto" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                </button>
             </form>
         </div>
     </section>
@@ -148,16 +167,21 @@
     <!-- Modal de éxito -->
     <div id="success-modal" class="modal">
         <div class="modal-content">
-            <div class="modal-icon">
-                <i class="fas fa-check-circle"></i>
+            <div class="modal-header">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>¡Mensaje Enviado!</h3>
             </div>
-            <h3>Mensaje enviado con éxito</h3>
-            <p>Tu mensaje ha sido enviado correctamente. Te responderé lo antes posible.</p>
-            <button id="accept-btn" class="accept-btn">Aceptar</button>
+            <div class="modal-body">
+                <p>Gracias por contactarme. Te responderé lo antes posible.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="accept-btn" class="accept-btn">Aceptar</button>
+            </div>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
-
 </html>
