@@ -45,7 +45,7 @@
         </div>
 
         <!-- Nombre con efecto glitch -->
-        <h1 class="name animate-fade-in glitch-text">FΔBRI</h1>
+        <h1 class="name animate-fade-in glitch-text dynamic-shadow">FΔBRI</h1>
 
         <!-- Descripciones -->
         <div class="bios">
@@ -81,21 +81,31 @@
         </div>
     </div>
 
-            <!-- Sección de Información Pública -->
         <section class="public-info-section">
-            <h2 class="section-title">Tu Información Pública</h2>
-            <div class="public-info-container">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Información de IP</h3>
-                    <div id="ipinfo-data" class="info-data">
-                        <p>Cargando información...</p>
-                    </div>
-                </div>
+        <h2 class="section-title">Tu Información Pública</h2>
+        <div class="public-info-container" style="display: flex; gap: 20px; flex-wrap: wrap;">
+            
+            <!-- Bloque 1 + Bloque 3: API pública + extras -->
+            <div class="info-card" style="flex: 1; min-width: 300px;">
+            <div class="info-icon"><i class="fas fa-globe"></i></div>
+            <h3>Información de IP</h3>
+            <div id="ipinfo-data" class="info-data">
+                <p>Cargando información...</p>
             </div>
+            </div>
+
+            <!-- Bloque 2: Info del dispositivo -->
+            <div class="info-card" style="flex: 1; min-width: 300px;">
+            <div class="info-icon"><i class="fas fa-desktop"></i></div>
+            <h3>Información del Dispositivo</h3>
+            <div id="device-info" class="info-data">
+                <p>Cargando información...</p>
+            </div>
+            </div>
+
+        </div>
         </section>
+
 
     <!-- Sección de Discord/Steam -->
     <section class="discord-steam-section">

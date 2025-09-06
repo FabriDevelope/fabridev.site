@@ -277,7 +277,7 @@ function fetchIPInfo() {
             // Crear HTML para mostrar la información con nombres en español
             const camposEspañol = {
                 ip: 'IP',
-                hostname: 'Nombre de Host',
+                hostname: 'Nombre de Host (VPN)',
                 city: 'Ciudad',
                 region: 'Región',
                 country: 'País',
@@ -303,7 +303,28 @@ function fetchIPInfo() {
         });
 }
 
+
+// Info del dispositivo
+function fetchDeviceInfo() {
+  const ua = navigator.userAgent;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const lang = navigator.language;
+  const now = new Date().toLocaleString();
+
+  const html = `
+    <p><strong>Navegador y SO:</strong> ${ua}</p>
+    <p><strong>Resolución:</strong> ${width} x ${height}</p>
+    <p><strong>Idioma:</strong> ${lang}</p>
+    <p><strong>Hora local:</strong> ${now}</p>
+  `;
+  document.getElementById('device-info').innerHTML = html;
+}
+
+// Ejecutar funciones
+fetchDeviceInfo();
 // Llamar a la función para obtener la información de IP
 fetchIPInfo();
+setInterval(fetchDeviceInfo, 1000);
 
 });
